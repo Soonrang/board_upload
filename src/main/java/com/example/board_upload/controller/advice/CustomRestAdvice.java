@@ -1,4 +1,4 @@
-package org.zerock.b01.controller.advice;
+package com.example.board_upload.controller.advice;
 
 
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;

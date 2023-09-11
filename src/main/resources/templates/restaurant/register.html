@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Board Register</title>
 </head>
-<body>
-$END$
-</body>
-</html>
+
+<form action="/restaurant/register" method="post">
+    <div>
+        <span>가게이름</span>
+        <input type="text" name="name" placeholder="가게이름">
+    </div>
+
+    <div>
+        <span>카테고리</span>
+        <select name="categories">
+            <option value="한식">한식</option>
+            <option value="중식">중식</option>
+            <option value="일식">일식</option>
+            <option value="카페">카페</option>
+        </select>
+    </div>
+
+    <div>
+        <span>openingTime</span>
+        <select name="openingTime">
+            <option th:each="number : ${#numbers.sequence(10, 21)}"
+                    th:value="${number}" th:text="${number}"></option>
+        </select>
+    </div>
+
+    <div>
+        <span>closingTime</span>
+        <select name="closingTime">
+            <option th:each="number : ${#numbers.sequence(11, 22)}"
+                    th:value="${number}" th:text="${number}"></option>
+        </select>
+    </div>
+
+    <div>
+        <span>위치</span>
+        <input type="text" name="location" placeholder="location">
+    </div>
+
+    <div>
+        <span>번호</span>
+        <input type="text" name="callNumber" placeholder="callNumber">
+    </div>
+
+    <div>
+        <span>설명</span>
+        <input type="text" name="description" placeholder="description">
+    </div>
+
+    <div>
+        <span>이미지 업로드</span>
+        <input type="file" name="image">
+    </div>
+
+    <div>
+        <div>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    </div>
+</form>
+
+<script th:inline="javascript">
+
+    // JavaScript로 선택된 숫자를 LocalTime으로 변환하는 함수
+    function convertToLocalTime(hours) {
+        // 시간을 HH:mm:ss 형식으로 만듭니다.
+        var timeString = hours + ":00:00";
+        return timeString;
+    }
+
+    // 폼 제출 전에 선택된 숫자를 LocalTime으로 변환합니다.
+    document.querySelector("form").addEventListener("submit", function () {
+        var openingTimeSelect = document.getElementsByName("opengTime")[0];
+        var closingTimeSelect = document.getElementsByName("closingTime")[0];
+
+        openingTimeSelect.value = convertToLocalTime(openingTimeSelect.value);
+        closingTimeSelect.value = convertToLocalTime(closingTimeSelect.value);
+    });
+
+    const errors = [[${errors}]]
+    console.log(errors)
+
+    let errorMsg = ''
+
+    if(errors){
+        for (let i = 0; i < errors.length; i++) {
+            errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`
+        }
+        alert(errorMsg)
+    }
+
+</script>

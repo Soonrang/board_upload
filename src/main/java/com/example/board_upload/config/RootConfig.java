@@ -1,4 +1,4 @@
-package org.zerock.b01.config;
+package com.example.board_upload.config;
 
 
 import org.modelmapper.ModelMapper;

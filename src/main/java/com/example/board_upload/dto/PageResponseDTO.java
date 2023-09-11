@@ -1,4 +1,4 @@
-package org.zerock.b01.dto;
+package com.example.board_upload.dto;
 
 import lombok.Builder;
 import lombok.Getter;
