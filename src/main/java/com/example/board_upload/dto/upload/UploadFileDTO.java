@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class UploadFileDTO {
-    private List<MultipartFile> image;
+    private List<MultipartFile> files;
 
 }

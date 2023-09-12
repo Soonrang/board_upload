@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div>가게 상세페이지</div>
 
+<!--<input type="text" th:value="${dto.rno}" readonly>-->
+<input type="text" th:value="${dto.name}" readonly>
+<input type="text" th:value="${dto.categories}" readonly>
+<input type="text" th:value="${dto.openingTime}" readonly>
+<input type="text" th:value="${dto.closingTime}" readonly>
+<input type="text" th:value="${dto.location}" readonly>
+<input type="text" th:value="${dto.callNumber}" readonly>
+<input type="text" th:value="${dto.description}" readonly>
+
+<!-- Check if there are image file names -->
+<th:block th:if="${dto.fileNames != null and dto.fileNames.size() > 0}">
+    <!-- Iterate through image file names and display them -->
+    <th:block th:each="fileName: ${dto.fileNames}">
+        <img th:src="@{/view/{fileName}(fileName=${fileName})}" alt="Restaurant Image">
+    </th:block>
+</th:block>
 </body>
 </html>

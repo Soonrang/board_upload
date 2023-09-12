@@ -22,9 +22,9 @@ public class RestaurantListAllDTO {
 
     private String categories;
 
-    private LocalTime openingTime;
+    private String openingTime;
 
-    private LocalTime closingTime;
+    private String closingTime;
 
     private String location;
 

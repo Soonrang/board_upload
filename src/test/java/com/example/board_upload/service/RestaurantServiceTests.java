@@ -19,21 +19,19 @@ public class RestaurantServiceTests {
 
     @Test
     public void testRegisterWithImages(){
-        LocalTime openingTime = LocalTime.parse("10:10");
-        LocalTime closingTime = LocalTime.parse("22:00");
+//        LocalTime openingTime = LocalTime.parse("10:00");
+//        LocalTime closingTime = LocalTime.parse("18:00");
 
         log.info(restaurantService.getClass().getName());
 
         RestaurantDTO restaurantDTO = RestaurantDTO.builder()
-                .name("인크커피")
+                .name("이에노")
                 .categories("카페")
-                .openingTime(openingTime)
-                .closingTime(closingTime)
-                .callNumber("02-854-7200")
-                .location("서울 금천구 가산디지털2로 127-20")
-                .description("커피와 카페, 익숙한 일상의 가치를 다시 보게하다." +
-                        "커피부터 빵까지 소흘히 하지 않는 카페, 인크커피입니다." +
-                        "도심 속 여유를 즐겨보시길 바랍니다.")
+                .openingTime("9")
+                .closingTime("18")
+                .callNumber("0507-1405-0549")
+                .location("서울 금천구 가산디지털2로 101 1층 120호")
+                .description("베이글집 오픈")
                 .build();
 
         restaurantDTO.setFileNames(
@@ -61,15 +59,15 @@ public class RestaurantServiceTests {
     @Test
     public void testModify() {
 
-        LocalTime openingTime = LocalTime.parse("08:00");
-        LocalTime closingTime = LocalTime.parse("18:30");
+//        LocalTime openingTime = LocalTime.parse("08:00");
+//        LocalTime closingTime = LocalTime.parse("18:30");
         //변경에 필요한 데이터
         RestaurantDTO restaurantDTO = RestaurantDTO.builder()
                 .rno(3L)
                 .name("도노커피 한라원앤원타워")
                 .categories("카페")
-                .openingTime(openingTime)
-                .closingTime(closingTime)
+                .openingTime("8")
+                .closingTime("18")
                 .callNumber("0507-1442-3534")
                 .location("서울 금천구 가산디지털2로 101 1층 113호")
                 .description("포장, 무선인터넷, 남/녀 화장실 구분")

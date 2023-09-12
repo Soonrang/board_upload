@@ -16,7 +16,9 @@
     <tr th:each="dto:${responseDTO.dtoList}">
       <th>[[${dto.rno}]]</th>
       <td>
-        <a th:href="|@{/restaurant/read(rno=${dto.rno})}&{link}|">[[${dto.name}]]</a>
+<!--        <a th:href="|@{/restaurant/read(rno=${dto.rno})}&${link}|">[[${dto.name}]]</a>-->
+        <a th:href="|@{/restaurant/read(rno=${dto.rno})}|">[[${dto.name}]]</a>
+
       </td>
       <td>[[${dto.categories}]]</td>
     </tr>

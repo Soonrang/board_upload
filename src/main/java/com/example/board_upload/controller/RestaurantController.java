@@ -4,6 +4,7 @@ import com.example.board_upload.dto.PageRequestDTO;
 import com.example.board_upload.dto.PageResponseDTO;
 import com.example.board_upload.dto.RestaurantDTO;
 import com.example.board_upload.service.RestaurantService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -48,6 +49,7 @@ public class RestaurantController {
             redirectAttributes.addFlashAttribute("error",bindingResult.getAllErrors());
             return "redirect:/restaurant/register";
         }
+
 
         log.info(restaurantDTO);
 

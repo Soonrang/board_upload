@@ -25,10 +25,10 @@ public class Restaurant {
     private String categories;
 
     @Column(nullable = false)
-    private LocalTime openingTime;
+    private String openingTime;
 
     @Column(nullable = false)
-    private LocalTime closingTime;
+    private String closingTime;
 
     @Column(length=500, nullable = false)
     private String location;
@@ -42,7 +42,7 @@ public class Restaurant {
     @Column(length=5000, nullable = false)
     private String description;
 
-    public void change(String name,String categories, LocalTime openingTime, LocalTime closingTime,
+    public void change(String name,String categories, String openingTime, String closingTime,
     String callNumber,  String location, String description ) {
         this.name =name;
         this.categories =categories;

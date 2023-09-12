@@ -27,6 +27,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     private final ModelMapper modelMapper;
     private final RestaurantRepository restaurantRepository;
 
+
     @Override
     public Long register(RestaurantDTO restaurantDTO) {
 
@@ -44,14 +45,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         RestaurantDTO restaurantDTO = entityToDTO(restaurant);
         return  restaurantDTO;
-//
-//        Optional<Restaurant> result = restaurantRepository.findById(rno);
-//
-//        Restaurant restaurant = result.orElseThrow();
-//
-//        RestaurantDTO restaurantDTO = modelMapper.map(restaurant, RestaurantDTO.class);
-//
-//        return restaurantDTO;
     }
 
     @Override
@@ -84,37 +77,37 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurantRepository.deleteById(rno);
     }
 
-//    @Override
-//    public PageResponseDTO<RestaurantDTO> list(PageRequestDTO pageRequestDTO) {
-//
-//        Pageable pageable = pageRequestDTO.getPageable("rno");
-//        Page<Restaurant> result = restaurantRepository.findAll(pageable);
-//
-//        List<RestaurantDTO> dtoList = result.getContent().stream()
-//                .map(restaurant -> modelMapper.map(restaurant,RestaurantDTO.class))
-//                        .collect(Collectors.toList());
-//
-//        List<RestaurantImageDTO> imageDTOS =
-//
-//
-//        return new PageResponseDTO<>(pageRequestDTO, dtoList, (int)result.getTotalElements());
-//    }
-
     @Override
-    public PageRequestDTO<RestaurantListAllDTO> lsitWithAll(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<RestaurantDTO> list(PageRequestDTO pageRequestDTO) {
+
         Pageable pageable = pageRequestDTO.getPageable("rno");
+        Page<Restaurant> result = restaurantRepository.findAll(pageable);
 
-        Page<RestaurantListAllDTO> result = restaurantRepository.findByIdWithImages(pageable);
+        List<RestaurantDTO> dtoList = result.getContent().stream()
+                .map(restaurant -> modelMapper.map(restaurant,RestaurantDTO.class))
+                        .collect(Collectors.toList());
 
-        return PageResponseDTO.<RestaurantListAllDTO>withAll()
-                .pageRequestDTO(pageRequestDTO)
-                .dtoList(result.getContent())
-                .total((int)result.getTotalElements())
-                .build();
+        return new PageResponseDTO<>(pageRequestDTO, dtoList, (int)result.getTotalElements());
     }
 
+    @Override
+    public PageResponseDTO<RestaurantListAllDTO> listWithAll(PageRequestDTO pageRequestDTO) {
+        return null;
+    }
 
-
+//    @Override
+//    public PageResponseDTO<RestaurantListAllDTO> listWithAll(PageRequestDTO pageRequestDTO) {
+//
+//        Pageable pageable = pageRequestDTO.getPageable("rno");
+//
+//        Page<RestaurantListAllDTO> result = restaurantRepository.findAll(pageable);
+//
+//        return PageResponseDTO.<BoardListAllDTO>withAll()
+//                .pageRequestDTO(pageRequestDTO)
+//                .dtoList(result.getContent())
+//                .total((int) result.getTotalElements())
+//                .build();
+//    }
 
 
 }

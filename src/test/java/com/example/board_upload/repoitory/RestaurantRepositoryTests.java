@@ -22,14 +22,14 @@ public class RestaurantRepositoryTests {
 
     @Test
     public void testInsert() {
-        LocalTime openingTime = LocalTime.parse("10:10");
-        LocalTime closingTime = LocalTime.parse("22:00");
+//        LocalTime openingTime = LocalTime.parse("10:10");
+//        LocalTime closingTime = LocalTime.parse("22:00");
 
         Restaurant restaurant = Restaurant.builder()
                 .name("인크커피")
                 .categories("카페")
-                .openingTime(openingTime)
-                .closingTime(closingTime)
+                .openingTime("10")
+                .closingTime("18")
                 .callNumber("02-854-7200")
                 .location("서울 금천구 가산디지털2로 127-20")
                 .description("커피와 카페, 익숙한 일상의 가치를 다시 보게하다." +
@@ -46,14 +46,14 @@ public class RestaurantRepositoryTests {
     @Test
     public void testInsertWithImages() {
 
-        LocalTime openingTime = LocalTime.parse("10:10");
-        LocalTime closingTime = LocalTime.parse("22:00");
+//        LocalTime openingTime = LocalTime.parse("10:10");
+//        LocalTime closingTime = LocalTime.parse("22:00");
 
         Restaurant restaurant= Restaurant.builder()
                 .name("인크커피")
                 .categories("카페")
-                .openingTime(openingTime)
-                .closingTime(closingTime)
+                .openingTime("10")
+                .closingTime("18")
                 .callNumber("02-854-7200")
                 .location("서울 금천구 가산디지털2로 127-20")
                 .description("커피와 카페, 익숙한 일상의 가치를 다시 보게하다." +

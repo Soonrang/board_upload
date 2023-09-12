@@ -54,7 +54,7 @@
 
     <div>
         <span>이미지 업로드</span>
-        <input type="file" name="image">
+        <input type="file" name="files" multiple>
     </div>
 
     <div>
@@ -65,34 +65,34 @@
     </div>
 </form>
 
-<script th:inline="javascript">
+<!--<script th:inline="javascript">-->
 
-    // JavaScript로 선택된 숫자를 LocalTime으로 변환하는 함수
-    function convertToLocalTime(hours) {
-        // 시간을 HH:mm:ss 형식으로 만듭니다.
-        var timeString = hours + ":00:00";
-        return timeString;
-    }
+<!--    // JavaScript로 선택된 숫자를 LocalTime으로 변환하는 함수-->
+<!--    function convertToLocalTime(hours) {-->
+<!--        // 시간을 HH:mm:ss 형식으로 만듭니다.-->
+<!--        var timeString = hours + ":00:00";-->
+<!--        return timeString;-->
+<!--    }-->
 
-    // 폼 제출 전에 선택된 숫자를 LocalTime으로 변환합니다.
-    document.querySelector("form").addEventListener("submit", function () {
-        var openingTimeSelect = document.getElementsByName("opengTime")[0];
-        var closingTimeSelect = document.getElementsByName("closingTime")[0];
+<!--    // 폼 제출 전에 선택된 숫자를 LocalTime으로 변환합니다.-->
+<!--    document.querySelector("form").addEventListener("submit", function () {-->
+<!--        var openingTimeSelect = document.getElementsByName("openingTime")[0];-->
+<!--        var closingTimeSelect = document.getElementsByName("closingTime")[0];-->
 
-        openingTimeSelect.value = convertToLocalTime(openingTimeSelect.value);
-        closingTimeSelect.value = convertToLocalTime(closingTimeSelect.value);
-    });
+<!--        openingTimeSelect.value = convertToLocalTime(openingTimeSelect.value);-->
+<!--        closingTimeSelect.value = convertToLocalTime(closingTimeSelect.value);-->
+<!--    });-->
 
-    const errors = [[${errors}]]
-    console.log(errors)
+<!--    const errors = [[${errors}]]-->
+<!--    console.log(errors)-->
 
-    let errorMsg = ''
+<!--    let errorMsg = ''-->
 
-    if(errors){
-        for (let i = 0; i < errors.length; i++) {
-            errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`
-        }
-        alert(errorMsg)
-    }
+<!--    if(errors){-->
+<!--        for (let i = 0; i < errors.length; i++) {-->
+<!--            errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`-->
+<!--        }-->
+<!--        alert(errorMsg)-->
+<!--    }-->
 
-</script>
+<!--</script>-->

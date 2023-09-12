@@ -5,6 +5,7 @@ import com.example.board_upload.domain.RestaurantImage;
 import com.example.board_upload.dto.PageRequestDTO;
 import com.example.board_upload.dto.PageResponseDTO;
 import com.example.board_upload.dto.RestaurantDTO;
+import com.example.board_upload.dto.RestaurantListAllDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public interface RestaurantService {
 
     PageResponseDTO<RestaurantDTO> list(PageRequestDTO pageRequestDTO);
 
+    PageResponseDTO<RestaurantListAllDTO> listWithAll(PageRequestDTO pageRequestDTO);
     default Restaurant dtoToEntity(RestaurantDTO restaurantDTO){
 
         Restaurant restaurant = Restaurant.builder()
