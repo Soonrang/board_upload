@@ -14,6 +14,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @EntityGraph(attributePaths =  {"imageSet"})
     @Query("select r from Restaurant r where r.rno = :rno")
     Optional<Restaurant> findByIdWithImages(Long rno);
+    Restaurant findByNameAndLocation(String name, String location);
 
 
 }

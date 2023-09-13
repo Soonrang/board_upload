@@ -5,7 +5,7 @@
     <title>Board Register</title>
 </head>
 
-<form action="/restaurant/register" method="post">
+<form action="/restaurant/register" method="post" enctype="multipart/form-data">
     <div>
         <span>가게이름</span>
         <input type="text" name="name" placeholder="가게이름">
@@ -54,7 +54,7 @@
 
     <div>
         <span>이미지 업로드</span>
-        <input type="file" name="files" multiple>
+        <input type="file" name="files">
     </div>
 
     <div>
@@ -66,22 +66,6 @@
 </form>
 
 <!--<script th:inline="javascript">-->
-
-<!--    // JavaScript로 선택된 숫자를 LocalTime으로 변환하는 함수-->
-<!--    function convertToLocalTime(hours) {-->
-<!--        // 시간을 HH:mm:ss 형식으로 만듭니다.-->
-<!--        var timeString = hours + ":00:00";-->
-<!--        return timeString;-->
-<!--    }-->
-
-<!--    // 폼 제출 전에 선택된 숫자를 LocalTime으로 변환합니다.-->
-<!--    document.querySelector("form").addEventListener("submit", function () {-->
-<!--        var openingTimeSelect = document.getElementsByName("openingTime")[0];-->
-<!--        var closingTimeSelect = document.getElementsByName("closingTime")[0];-->
-
-<!--        openingTimeSelect.value = convertToLocalTime(openingTimeSelect.value);-->
-<!--        closingTimeSelect.value = convertToLocalTime(closingTimeSelect.value);-->
-<!--    });-->
 
 <!--    const errors = [[${errors}]]-->
 <!--    console.log(errors)-->

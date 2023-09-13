@@ -20,9 +20,10 @@ public interface RestaurantService {
 
     void remove(Long rno);
 
+//    PageResponseDTO<RestaurantListAllDTO> allList (PageRequestDTO pageRequestDTO);
+
     PageResponseDTO<RestaurantDTO> list(PageRequestDTO pageRequestDTO);
 
-    PageResponseDTO<RestaurantListAllDTO> listWithAll(PageRequestDTO pageRequestDTO);
     default Restaurant dtoToEntity(RestaurantDTO restaurantDTO){
 
         Restaurant restaurant = Restaurant.builder()

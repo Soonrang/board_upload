@@ -1,8 +1,6 @@
 package com.example.board_upload.controller;
 
-import com.example.board_upload.dto.PageRequestDTO;
-import com.example.board_upload.dto.PageResponseDTO;
-import com.example.board_upload.dto.RestaurantDTO;
+import com.example.board_upload.dto.*;
 import com.example.board_upload.service.RestaurantService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
@@ -61,6 +59,7 @@ public class RestaurantController {
     @GetMapping({"/read", "/modify"})
     public void read(Long rno, PageRequestDTO pageRequestDTO, Model model) {
         RestaurantDTO restaurantDTO = restaurantService.readOne(rno);
+
         log.info(restaurantDTO);
         model.addAttribute("dto", restaurantDTO);
     }

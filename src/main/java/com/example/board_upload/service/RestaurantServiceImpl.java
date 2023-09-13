@@ -1,10 +1,9 @@
 package com.example.board_upload.service;
 
 import com.example.board_upload.domain.Restaurant;
-import com.example.board_upload.domain.RestaurantImage;
 import com.example.board_upload.dto.*;
 import com.example.board_upload.repository.RestaurantRepository;
-import lombok.AllArgsConstructor;
+import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -14,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 
 @Service
 @Log4j2
@@ -30,6 +31,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Long register(RestaurantDTO restaurantDTO) {
+        String name = restaurantDTO.getName();
+        String location = restaurantDTO.getLocation();
+
+        Restaurant existingRestaurant = restaurantRepository.findByNameAndLocation(name, location);
+
+        if(existingRestaurant != null) {
+            System.out.println("이미 등록된 가게입니다.");
+        }
 
         Restaurant restaurant = dtoToEntity(restaurantDTO);
         Long rno = restaurantRepository.save(restaurant).getRno();
@@ -77,6 +86,19 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurantRepository.deleteById(rno);
     }
 
+//    @Override
+//    public PageResponseDTO<RestaurantListAllDTO> allList(PageRequestDTO pageRequestDTO) {
+//
+//       Pageable pageable = pageRequestDTO.getPageable("rno");
+//       Page<Restaurant> result = restaurantRepository.findAll(pageable);
+//
+//
+//
+//
+//        return null;
+//    }
+
+
     @Override
     public PageResponseDTO<RestaurantDTO> list(PageRequestDTO pageRequestDTO) {
 
@@ -88,11 +110,6 @@ public class RestaurantServiceImpl implements RestaurantService {
                         .collect(Collectors.toList());
 
         return new PageResponseDTO<>(pageRequestDTO, dtoList, (int)result.getTotalElements());
-    }
-
-    @Override
-    public PageResponseDTO<RestaurantListAllDTO> listWithAll(PageRequestDTO pageRequestDTO) {
-        return null;
     }
 
 //    @Override
