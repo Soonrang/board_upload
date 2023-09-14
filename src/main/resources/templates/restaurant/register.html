@@ -52,31 +52,99 @@
         <input type="text" name="description" placeholder="description">
     </div>
 
+<!--    <div>-->
+<!--        <span>이미지</span>-->
+<!--        <div>-->
+<!--            <button type="button">파일추가</button>-->
+<!--        </div>-->
+<!--    -->
+
+<!--    <div>-->
+<!--        <span>이미지 업로드</span>-->
+<!--        <input type="file" name="files" multipart >-->
+<!--        <button type="button" class="uploadBtn">업로드</button>-->
+<!--    </div>-->
+
     <div>
         <span>이미지 업로드</span>
-        <input type="file" name="files">
+        <input type="file" name="files" multiple>
+        <button type="button" class="uploadBtn">업로드</button>
+    </div>
+
+    <div>
+        <div id="uploadResult"> <!-- 이미지를 표시할 엘리먼트 추가 -->
+        </div>
     </div>
 
     <div>
         <div>
-            <button type="submit">Submit</button>
+            <button type="submit" class="submitBtn">Submit</button>
             <button type="reset">Reset</button>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="/js/upload.js"></script>
+
 </form>
 
-<!--<script th:inline="javascript">-->
+<!--<script>-->
+<!--    document.querySelector(".uploadBtn").addEventListener("click", function (e) {-->
+<!--        const formObj = new FormData();-->
+<!--        const fileInput = document.querySelector("input[name='files']")-->
+<!--        console.log(fileInput.files)-->
+<!--        const files = fileInput.files-->
 
-<!--    const errors = [[${errors}]]-->
-<!--    console.log(errors)-->
-
-<!--    let errorMsg = ''-->
-
-<!--    if(errors){-->
-<!--        for (let i = 0; i < errors.length; i++) {-->
-<!--            errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`-->
+<!--        for (let i = 0; i < files.length; i++) {-->
+<!--            formObj.append("files", files[i]);-->
 <!--        }-->
-<!--        alert(errorMsg)-->
-<!--    }-->
+
 
 <!--</script>-->
+
+<script>
+    document.querySelector(".uploadBtn").addEventListener("click", function (e) {
+        const formObj = new FormData();
+        const fileInput = document.querySelector("input[name='files']");
+        const files = fileInput.files;
+
+        for (let i = 0; i < files.length; i++) {
+            formObj.append("files", files[i]);
+        }
+
+        axios.post('/upload', formObj, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(function (response) {
+                // 성공적으로 서버에 데이터를 전송한 경우 처리
+                console.log(response);
+            })
+            .catch(function (error) {
+                // 전송 중 오류가 발생한 경우 처리
+                console.error(error);
+            });
+    });
+
+    // 게시물 등록처리
+    document.querySelector(".submitBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // 이미지 업로드 결과를 가져와서 처리하는 코드 추가
+
+        const formObj = document.querySelector("form");
+
+        formObj.submit();
+        formObj.reset();
+
+        document.querySelector("form").submit();
+    });
+</script>
+
+
+
+
+</html>

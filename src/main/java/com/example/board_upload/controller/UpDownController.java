@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,18 +23,17 @@ import java.util.*;
 
 @RestController
 @Log4j2
-public class UploadController {
+public class UpDownController {
 
 
     @Value("${com.example.board_upload.path}")  //import 시에 springframework로 시작하는 value
     private String uploadPath;
 
-
     @ApiOperation(value = "Upload POST", notes = "POST방식으로 파일 등록")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public List<UploadResultDTO> uplaod(UploadFileDTO uploadFileDTO) {
         log.info(uploadFileDTO);
-        if(uploadFileDTO.getFiles() != null){
+        if (uploadFileDTO.getFiles() != null) {
 
             final List<UploadResultDTO> list = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class UploadController {
 
                 String uuid = UUID.randomUUID().toString();
 
-                Path savePath = Paths.get(uploadPath, uuid+"_"+originalName);
+                Path savePath = Paths.get(uploadPath, uuid + "_" + originalName);
 
                 boolean image = false;
 
@@ -51,9 +51,9 @@ public class UploadController {
                     multipartFile.transferTo(savePath);
 
                     //이미지 파일의 종류라면
-                    if(Files.probeContentType(savePath).startsWith("image")){
-                        File thumbFile = new File(uploadPath, "s_"+uuid+"_"+originalName);
-                        Thumbnailator.createThumbnail(savePath.toFile(), thumbFile, 200,200);
+                    if (Files.probeContentType(savePath).startsWith("image")) {
+                        File thumbFile = new File(uploadPath, "s_" + uuid + "_" + originalName);
+                        Thumbnailator.createThumbnail(savePath.toFile(), thumbFile, 200, 200);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -69,9 +69,8 @@ public class UploadController {
             return list;
         } // end if
         return null;
+
     }
-
-
 
     @ApiOperation(value = "view 파일", notes = "GET방식으로 첨부파일 조회")
     @GetMapping("/view/{fileName}")

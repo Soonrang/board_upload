@@ -2,6 +2,7 @@ package com.example.board_upload.controller;
 
 import com.example.board_upload.dto.*;
 import com.example.board_upload.service.RestaurantService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,9 @@ import javax.validation.Valid;
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
+
+    @Value("${com.example.board_upload.path}")
+    private String uploadPath;
 
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
